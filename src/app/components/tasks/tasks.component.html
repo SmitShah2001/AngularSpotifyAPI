@@ -1,0 +1,10 @@
+<div class="container">
+  <app-header [title]="'Task List'" [total]="taskList.length"></app-header>
+  <div class="search-bar">
+    <app-search (search)="onSearch($event)"></app-search>
+  </div>
+  <app-task-list
+    [tasks]="filteredTasks"
+    (deleteTask)="onDeleteTask($event)"
+  ></app-task-list>
+</div>

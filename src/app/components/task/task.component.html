@@ -1,0 +1,10 @@
+<div class="task">
+    <div>
+      <h3>{{ task.title }}</h3>
+      <ul>
+        <li *ngFor="let subTask of task.tasks">{{ subTask }}</li>
+      </ul>
+    </div>
+    <button (click)="onDelete()">Delete</button>
+  </div>
+  

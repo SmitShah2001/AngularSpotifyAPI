@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <h1 class="text-center">Login Form</h1>
+  <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && loginFuntion()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        [(ngModel)]="form.email"
+        name="email"
+        #email="ngModel"
+        required
+        [pattern]="emailRegex"
+        [ngClass]="{ 'is-invalid': email.errors && email.touched }"
+      />
+      <div *ngIf="email.errors && email.touched" class="invalid-feedback">
+        <small *ngIf="email.errors['required']">Email is required</small>
+        <small *ngIf="email.errors['pattern']"
+          >Please enter a valid email.</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        [(ngModel)]="form.password"
+        name="password"
+        #password="ngModel"
+        required
+        minlength="8"
+        [pattern]="passwordRegex"
+        [ngClass]="{ 'is-invalid': password.errors && password.touched }"
+      />
+      <div *ngIf="password.errors && password.touched" class="invalid-feedback">
+        <small *ngIf="password.errors['required']">Password is required</small>
+        <small *ngIf="password.errors['pattern']"
+          >Please enter a valid password.</small
+        >
+      </div>
+    </div>
+    <div class="form-group text-center mt-4">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="loginForm.form.status === 'INVALID'"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

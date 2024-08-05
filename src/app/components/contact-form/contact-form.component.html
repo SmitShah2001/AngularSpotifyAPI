@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <h1 class="text-center">Contact Form</h1>
+  <form
+    #contactForm="ngForm"
+    (ngSubmit)="contactForm.form.valid && submitContactForm()"
+  >
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Name"
+        [(ngModel)]="form.name"
+        name="name"
+        #name="ngModel"
+        required
+        [ngClass]="{ 'is-invalid': name.errors && name.touched }"
+      />
+      <div *ngIf="name.errors && name.touched" class="invalid-feedback">
+        <small *ngIf="name.errors['required']">Name is required</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        [(ngModel)]="form.email"
+        name="email"
+        #email="ngModel"
+        required
+        [pattern]="emailRegex"
+        [ngClass]="{ 'is-invalid': email.errors && email.touched }"
+      />
+      <div *ngIf="email.errors && email.touched" class="invalid-feedback">
+        <small *ngIf="email.errors['required']">Email is required</small>
+        <small *ngIf="email.errors['pattern']"
+          >Please enter a valid email.</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phonenumber">Email</label>
+      <input
+        type="phonenumber"
+        class="form-control"
+        id="phonenumber"
+        placeholder="999 999 9999"
+        [(ngModel)]="form.phonenumber"
+        name="phonenumber"
+        #phonenumber="ngModel"
+        required
+        [pattern]="phonenumberRegex"
+        [ngClass]="{ 'is-invalid': phonenumber.errors && phonenumber.touched }"
+      />
+      <div
+        *ngIf="phonenumber.errors && phonenumber.touched"
+        class="invalid-feedback"
+      >
+        <small *ngIf="phonenumber.errors['required']"
+          >Phone Number is required</small
+        >
+        <small *ngIf="phonenumber.errors['pattern']"
+          >Please enter a valid Phone Number.</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea
+        class="form-control"
+        id="message"
+        placeholder="Message"
+        rows="4"
+        [(ngModel)]="form.message"
+        name="message"
+        #message="ngModel"
+        required
+        [ngClass]="{ 'is-invalid': message.errors && message.touched }"
+      ></textarea>
+      <div *ngIf="message.errors && message.touched" class="invalid-feedback">
+        <small *ngIf="message.errors['required']">Message is required</small>
+      </div>
+    </div>
+    <div class="form-group text-center mt-4">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="contactForm.form.status === 'INVALID'"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+<div *ngIf="newReleases.length" class="new-releases-container">
+  <h2 class="title">Spotify New Releases</h2>
+  <div class="albums-flex-container">
+    <div *ngFor="let album of newReleases" class="album-card">
+      <img
+        [src]="album.images[0].url"
+        alt="{{ album.name }}"
+        class="album-image"
+      />
+      <h3 class="album-name">{{ album.name }}</h3>
+    </div>
+  </div>
+</div>
